@@ -211,21 +211,21 @@ $(function(){
       changeMoney.text('');
 
       if(sum >= Number(cokePrice.text())){
-        if(Number(cokeStock.text()) == 0){
+        if(Number(cokeStock.text()) <= 0){
             cokePurchase.attr("style", "background-color:#9E9E9E");
         } else {
           cokePurchase.attr("style", "background-color:#FFA500");
         }
       }
       if(sum >= Number(energyDrinkPrice.text())){
-        if(Number(energyDrinkStock.text()) == 0){
+        if(Number(energyDrinkStock.text()) <= 0){
           energyDrinkPurchase.attr("style", "background-color:#9E9E9E");
         } else {
           energyDrinkPurchase.attr("style", "background-color:#FFA500");
         }
       }
       if(sum >= Number(waterPrice.text())){
-        if(Number(waterStock.text()) == 0){
+        if(Number(waterStock.text()) <= 0){
           waterPurchase.attr("style", "background-color:#9E9E9E");
         } else {
           waterPurchase.attr("style", "background-color:#FFA500");
@@ -252,20 +252,26 @@ $(function(){
     var price = Number(cokePrice.text());
     var stock = Number(cokeStock.text());
     var sale = Number(saleAmount.text());
+    var cokeButtonRgb = cokePurchase.css("background-color");
 
     if(price > insertMoney || stock <= 0){
+      return;
+    }
+    if(cokeButtonRgb == "rgb(158, 158, 158)"){
       return;
     }
     sumMoney.text(insertMoney - price);
     saleAmount.text(sale + price);
     cokeStock.text(stock - 1);
-    if(Number(sumMoney.text()) < Number(cokePrice.text())){
+
+    // 境界値のバグ。(Number(sumMoney.text()) < Number((ジュースの値段).text()))が正。
+    if(Number(sumMoney.text()) <= Number(cokePrice.text())){
       cokePurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(energyDrinkPrice.text())){
+    if(Number(sumMoney.text()) <= Number(energyDrinkPrice.text())){
       energyDrinkPurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(waterPrice.text())){
+    if(Number(sumMoney.text()) <= Number(waterPrice.text())){
       waterPurchase.attr("style", "background-color:#9E9E9E");
     }
 
@@ -280,20 +286,26 @@ $(function(){
     var price = Number(energyDrinkPrice.text());
     var stock = Number(energyDrinkStock.text());
     var sale = Number(saleAmount.text());
+    var energyDrinkButtonRgb = energyDrinkPurchase.css("background-color");
 
     if(price > insertMoney || stock <= 0){
+      return;
+    }
+    if(energyDrinkButtonRgb == "rgb(158, 158, 158)"){
       return;
     }
     sumMoney.text(insertMoney - price);
     saleAmount.text(sale + price);
     energyDrinkStock.text(stock - 1);
-    if(Number(sumMoney.text()) < Number(cokePrice.text())){
+
+    // 境界値のバグ。(Number(sumMoney.text()) < Number((ジュースの値段).text()))が正。
+    if(Number(sumMoney.text()) <= Number(cokePrice.text())){
       cokePurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(energyDrinkPrice.text())){
+    if(Number(sumMoney.text()) <= Number(energyDrinkPrice.text())){
       energyDrinkPurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(waterPrice.text())){
+    if(Number(sumMoney.text()) <= Number(waterPrice.text())){
       waterPurchase.attr("style", "background-color:#9E9E9E");
     }
 
@@ -308,20 +320,26 @@ $(function(){
     var price = Number(waterPrice.text());
     var stock = Number(waterStock.text());
     var sale = Number(saleAmount.text());
+    var waterButtonRgb = waterPurchase.css("background-color");
 
     if(price > insertMoney || stock <= 0){
+      return;
+    }
+    if(waterButtonRgb == "rgb(158, 158, 158)"){
       return;
     }
     sumMoney.text(insertMoney - price);
     saleAmount.text(sale + price);
     waterStock.text(stock - 1);
-    if(Number(sumMoney.text()) < Number(cokePrice.text())){
+
+    // 境界値のバグ。(Number(sumMoney.text()) < Number((ジュースの値段).text()))が正。
+    if(Number(sumMoney.text()) <= Number(cokePrice.text())){
       cokePurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(energyDrinkPrice.text())){
+    if(Number(sumMoney.text()) <= Number(energyDrinkPrice.text())){
       energyDrinkPurchase.attr("style", "background-color:#9E9E9E");
     }
-    if(Number(sumMoney.text()) < Number(waterPrice.text())){
+    if(Number(sumMoney.text()) <= Number(waterPrice.text())){
       waterPurchase.attr("style", "background-color:#9E9E9E");
     }
 

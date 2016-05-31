@@ -173,7 +173,7 @@ $(function(){
       changeMoney.text('');
 
       if(sum >= Number(cokePrice.text())){
-        if(Number(cokeStock.text()) == 0){
+        if(Number(cokeStock.text()) <= 0){
             cokePurchase.attr("style", "background-color:#9E9E9E");
         } else {
           cokePurchase.attr("style", "background-color:#FFA500");
@@ -197,13 +197,14 @@ $(function(){
     var stock = Number(cokeStock.text());
     var sale = Number(saleAmount.text());
 
-    if(price > insertMoney || stock <= 0){
+    // 境界値のバグ。(stock<=0)が正。
+    if(price > insertMoney || stock < 0){
       return;
     }
     sumMoney.text(insertMoney - price);
     saleAmount.text(sale + price);
     cokeStock.text(stock - 1);
-    // TODO バグを埋め込めそう（境界値）
+
     if(Number(sumMoney.text()) < Number(cokePrice.text())){
       cokePurchase.attr("style", "background-color:#9E9E9E");
     }
